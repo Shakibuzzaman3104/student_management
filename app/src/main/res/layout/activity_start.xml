@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:padding="32dp"
-    tools:context=".StartActivity">
+    tools:context=".activity.RegistrationActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -112,14 +112,28 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:id="@+id/submit"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@drawable/button"
         android:fontFamily="@font/raleway"
         android:text="Continue"
         android:textColor="@drawable/round_button_textcolor"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/login"
+        android:layout_marginBottom="@dimen/_12sdp"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/raleway_light"
+        android:text="Already have an Account ?"
+        android:textColor="@color/font_color"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/submit" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

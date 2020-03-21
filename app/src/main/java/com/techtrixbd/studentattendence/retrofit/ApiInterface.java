@@ -1,7 +1,12 @@
 package com.techtrixbd.studentattendence.retrofit;
 
+import com.techtrixbd.studentattendence.model.ModelAttendence;
+import com.techtrixbd.studentattendence.model.ModelResponse;
+import com.techtrixbd.studentattendence.model.ModelStudent;
+
 import java.util.List;
 
+import io.reactivex.Single;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
@@ -14,6 +19,15 @@ import retrofit2.http.Url;
 
 
 public interface ApiInterface {
+
+    @POST("student_registration.php/")
+    Single<ModelResponse> register(@Body ModelStudent student);
+
+    @POST("present.php/")
+    Single<ModelResponse> attendence(@Body ModelAttendence attendence);
+
+    @GET("login.php/")
+    Single<ModelResponse> login(@Query("id") String id);
 
    /* @GET("get_news_data.php/")
     Single<List<ModelNews>> getNewsData();
