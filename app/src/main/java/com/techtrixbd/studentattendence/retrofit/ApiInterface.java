@@ -29,6 +29,9 @@ public interface ApiInterface {
     @GET("login.php/")
     Single<ModelResponse> login(@Query("id") String id);
 
+    @GET("get_ids.php/")
+    Single<List<ModelAttendence>> get_ids(@Query("date") String date);
+
    /* @GET("get_news_data.php/")
     Single<List<ModelNews>> getNewsData();
 

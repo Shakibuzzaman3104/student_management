@@ -45,6 +45,7 @@ public class LoginActivity extends BaseActivity {
                             {
                                 startActivity(new Intent(this,MainActivity.class));
                                 sharedPreference.setID(binding.etId.getText().toString().trim());
+                                sharedPreference.setIsFirstBoot(false);
                                 finish();
                             }
                             else

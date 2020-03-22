@@ -37,4 +37,13 @@ public class MySharedPreference {
     public String getID() {
         return sharedPreferences.getString(Util.encryptString("id"), "none");
     }
+
+    public void setSection(String  data) {
+        editor.putString(Util.encryptString("sec"), data);
+        editor.apply();
+    }
+
+    public String getSection() {
+        return sharedPreferences.getString(Util.encryptString("sec"), "none");
+    }
 }

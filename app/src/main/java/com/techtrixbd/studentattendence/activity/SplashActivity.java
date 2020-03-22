@@ -16,7 +16,7 @@ public class SplashActivity extends BaseActivity {
         MySharedPreference sharedPreference = MySharedPreference.getPreferencesInstance(getApplicationContext());
         Intent intent;
 
-        if(sharedPreference.isFirstBoot())
+        if(sharedPreference.isFirstBoot() )
         {
             intent = new Intent(this, LoginActivity.class);
         }

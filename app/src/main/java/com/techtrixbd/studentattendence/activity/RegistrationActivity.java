@@ -68,8 +68,8 @@ public class RegistrationActivity extends BaseActivity {
 
     private void submitData() {
 
-        ModelStudent modelStudent = new ModelStudent(binding.etId.getText().toString(),binding.etName.getText().toString(),
-                binding.etEmail.getText().toString(),binding.etSection.getText().toString());
+        ModelStudent modelStudent = new ModelStudent(binding.etId.getText().toString().trim(),binding.etName.getText().toString().trim(),
+                binding.etEmail.getText().toString().trim(),binding.etSection.getText().toString().trim());
 
         apiInterface.register(modelStudent)
                 .subscribeOn(Schedulers.io())
