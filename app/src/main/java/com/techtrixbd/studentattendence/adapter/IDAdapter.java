@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -37,6 +38,15 @@ public class IDAdapter extends RecyclerView.Adapter<IDAdapter.ViewHolder> {
 
         holder.id.setText(attendences.get(position).getStId());
 
+    }
+
+    public void updateIds(List<ModelAttendence> attendances) {
+        final IdDiffUtil diffCallback = new IdDiffUtil(this.attendences, attendances);
+        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
+
+        this.attendences.clear();
+        this.attendences.addAll(attendances);
+        diffResult.dispatchUpdatesTo(this);
     }
 
     @Override

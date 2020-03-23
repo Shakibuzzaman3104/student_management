@@ -38,7 +38,6 @@ import io.reactivex.schedulers.Schedulers;
 public class MainActivity extends BaseActivity {
 
     ActivityMainBinding binding;
-    boolean isBottomOpen = false;
     List<ModelAttendence> attendenceList;
     IDAdapter adapter;
     CustomListViewDialog customDialog;
@@ -60,8 +59,6 @@ public class MainActivity extends BaseActivity {
 
             binding.present.startAnimation(myAnim);
 
-            getIds();
-
             ModelAttendence modelAttendence = new ModelAttendence(sharedPreference.getID(), getCurrentDate(), getCurrentTime());
             apiInterface.attendence(modelAttendence)
                     .subscribeOn(Schedulers.io())
@@ -76,8 +73,7 @@ public class MainActivity extends BaseActivity {
                     });
         });
 
-         customDialog = new CustomListViewDialog(MainActivity.this, adapter);
-
+        customDialog = new CustomListViewDialog(MainActivity.this, adapter);
 
 
         binding.exit.setOnClickListener(v -> {
@@ -85,30 +81,24 @@ public class MainActivity extends BaseActivity {
             System.exit(0);
         });
 
-        getIds();
-
-
-        binding.showID.setOnClickListener(v->showDialog());
-
+        binding.showID.setOnClickListener(v -> showDialog());
 
     }
 
     public void getIds() {
-            apiInterface.get_ids(getCurrentDate())
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(attendences->{
-                        attendenceList.clear();
-                        attendenceList.addAll(attendences);
-                        adapter.notifyDataSetChanged();
-                    },t->{});
+        apiInterface.get_ids(getCurrentDate())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(attendences -> {
+                    customDialog.progressBar.setVisibility(View.GONE);
+                    adapter.updateIds(attendences);
+                }, t -> {
+                });
     }
 
     private void showDialog() {
-
         customDialog.show();
         customDialog.setCanceledOnTouchOutside(false);
-
     }
 
 
